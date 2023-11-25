@@ -32,7 +32,7 @@ const handleUploadLocalFile = async (file, fileName, mimeType) => {
   data.append("file", file);
   // Upload the image to S3
   console.log("socket file: ", file)
-  // const res = await axios.post("http://localhost:3000/uploads/", data);
+  
   const bufferStream = new stream.PassThrough();
   bufferStream.end(file);
   fileName = Date.now().toString() + '-' + fileName;

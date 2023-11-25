@@ -1,6 +1,5 @@
 import { format } from "timeago.js";
 import "./message.css";
-import LinkPreview from '@dhaiwat10/react-link-preview';
 export default function Message({ message, own, testManual=null, videoMetadata }) {
   return testManual === null ?  (
     <div className={own ? "message own" : "message"}>
