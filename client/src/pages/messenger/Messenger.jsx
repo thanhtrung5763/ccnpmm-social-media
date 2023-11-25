@@ -8,8 +8,6 @@ import Topbar from "../../components/topbar/Topbar";
 import { AuthContext } from "../../context/AuthContext";
 import "./messenger.css";
 import CreateGroupChatForm from "../../components/utils/CreateGroupChatForm";
-// const fileUploader = require('../../s3.config');
-const { getVideoMetadata } = require('../../services/oembed');
 
 
 export default function Messenger() {
@@ -143,9 +141,6 @@ export default function Messenger() {
     } catch (err) {
       console.log(err);
     }
-    // messages[messages.length - 1]["file_url"] = message.file_url
-    // messages[messages.length - 1]["title"] = message.title
-    // setMessages([...messages])
   };
 
   const handleCreateGroup = async (e) => {
@@ -178,29 +173,6 @@ export default function Messenger() {
     setFile(file);
     console.log(file);
   };
-  const handleUploadImage = async (e) => {
-    const data = new FormData();
-    data.append("file", file);
-    console.log("FILEEEE" + file)
-    // Upload the image to S3
-    const res = await axios.post("/uploads/", data);
-    setNewMessage(res.data.url)
-  };
-
-  const videoUrl = "https://www.youtube.com/watch?v=1dlTWaiBZDw&list=RDM-O070P2v6g"
-  const [videoMetadata, setVideoMetadata] = useState(null);
-  useEffect(() => {
-    const get = async () => {
-      try {
-        const res = await getVideoMetadata(videoUrl);
-        console.log(res)
-        setVideoMetadata(res);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    get();
-  }, [videoUrl]);
 
   return (
     <>
@@ -211,33 +183,6 @@ export default function Messenger() {
             {/* <button className="chatSubmitButton" onClick={handleCreateGroup}>
               Create Group
             </button> */}
-            {/* <iframe
-            width="240"
-            height="240"
-            src="https://www.youtube.com/embed/6jypIrxqhXo"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title="Embedded youtube"
-            /> */}
-            {/* <div>
-              <span>
-                <div className="chatVideoUrl">
-                <a href={videoMetadata?.url} target="_blank" rel="noreferrer">{videoMetadata?.url}</a>
-                </div>
-                <div className="chatVideoThump">
-                  <a href={videoMetadata?.url} target="_blank" rel="noreferrer">
-                    <div>
-                      <div>
-                        <img src={videoMetadata?.file_url} alt=""/>
-                      </div>
-                      <div className="chatVideoTitle">
-                        <span>TikTok · Phát | Technical Leader</span>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </span>
-            </div> */}
             <CreateGroupChatForm />
             <input placeholder="Search for friends" className="chatMenuInput" />
             {conversations.map((c) => (
