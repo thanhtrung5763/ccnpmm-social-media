@@ -5,9 +5,9 @@ import ChatOnline from "../../components/chatOnline/ChatOnline";
 import Conversation from "../../components/conversations/Conversation";
 import Message from "../../components/message/Message";
 import Topbar from "../../components/topbar/Topbar";
+import CreateGroupChatForm from "../../components/utils/CreateGroupChatForm";
 import { AuthContext } from "../../context/AuthContext";
 import "./messenger.css";
-import CreateGroupChatForm from "../../components/utils/CreateGroupChatForm";
 
 
 export default function Messenger() {
@@ -215,9 +215,9 @@ export default function Messenger() {
                     Send
                   </button>
                   <input type="file" onChange={handleFileChange} />
-                  <button className="chatSubmitButton" onClick={handleUploadImage}>
+                  {/* <button className="chatSubmitButton" onClick={handleUploadImage}>
                     Upload
-                  </button>
+                  </button> */}
                 </div>
               </>
             ) : (
